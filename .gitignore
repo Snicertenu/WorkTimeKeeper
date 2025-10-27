@@ -28,6 +28,7 @@ MANIFEST
 # Data files (user data)
 time_entries.json
 description_frequency.json
+sheets_config.json
 
 # IDE
 .vscode/
