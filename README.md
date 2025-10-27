@@ -1,16 +1,31 @@
-# Time Tracker
+# Multi-Sheet Time Tracker
 
-A simple desktop application for tracking time spent on various activities. The application provides a clean interface with a table view of all time entries and allows you to start/stop tracking sessions with custom descriptions.
+A powerful desktop application for tracking time across multiple companies, projects, or activities simultaneously. The application features a tab-based interface allowing you to manage separate time sheets for different entities, with both concurrent and pause-others tracking modes.
 
 ## Features
 
-- **Simple Interface**: Clean, modern GUI with a table view and intuitive buttons
-- **Time Tracking**: Click to start tracking, click again to stop and record the session
-- **Smart Descriptions**: Enter custom descriptions or select from previous entries
-- **Data Persistence**: All entries are saved to a JSON file and persist between sessions
-- **Human Readable Format**: Time durations are displayed in a user-friendly format (e.g., "2h 15m 30s")
-- **Reset Functionality**: Clear all entries with a confirmation dialog
-- **Real-time Updates**: See elapsed time while tracking is active
+### Multi-Sheet Management
+- **Tab Interface**: Switch between different companies/projects using tabs
+- **Add/Remove Sheets**: Create new sheets or remove existing ones as needed
+- **Per-Sheet Data**: Each sheet maintains separate time entries and description frequency
+- **Visual Indicators**: Tabs show tracking status (⏱ for active, ⏸ for paused)
+
+### Dual Tracking Modes
+- **Pause Others Mode**: When you start tracking on one sheet, all other sheets are automatically paused
+- **Concurrent Mode**: Track time on multiple sheets simultaneously
+- **Pause/Resume**: Individual sheets can be paused and resumed while maintaining elapsed time
+
+### Smart Time Management
+- **Smart Descriptions**: Per-sheet description frequency tracking with dropdown selection
+- **Real-time Updates**: See elapsed time while tracking with live status updates
+- **Human Readable Format**: Time durations displayed as "2h 15m 30s"
+- **Data Persistence**: All data saved to `sheets_config.json` and persists between sessions
+
+### Advanced Export System
+- **Organized Folders**: Exports automatically organized by sheet name and week
+- **Week-Based Naming**: Files named as `sheet_W24_2025.txt` (week 24, year 2025)
+- **Multiple Formats**: Export to TXT or CSV format
+- **Folder Structure**: `exports/Company_A/sheet_W24_2025.txt`
 
 ## How to Use
 
@@ -31,11 +46,22 @@ A simple desktop application for tracking time spent on various activities. The 
 
 ### Using the Application
 
-1. **Start Tracking**: Click the "Start Tracking" button to begin a new time session
-2. **Stop Tracking**: Click the "Stop Tracking" button to end the current session
-3. **Enter Description**: When stopping, you'll be prompted to enter a description for the activity
-4. **View Entries**: All time entries are displayed in the table below the buttons
-5. **Reset Data**: Use the "Reset All Entries" button to clear all recorded data
+#### Sheet Management
+1. **Add Sheet**: Click "➕ Add Sheet" to create a new company/project sheet
+2. **Remove Sheet**: Click "➖ Remove Sheet" to delete the current sheet (requires at least 1 sheet)
+3. **Switch Sheets**: Click on different tabs to switch between sheets
+
+#### Time Tracking
+1. **Pause Others Mode**: Click "Start (Pause Others)" to start tracking and pause all other sheets
+2. **Concurrent Mode**: Click "Start (Concurrent)" to track multiple sheets simultaneously
+3. **Stop Tracking**: Click the stop button to end the current session
+4. **Pause/Resume**: Sheets can be paused and resumed individually
+
+#### Data Management
+1. **Enter Description**: When stopping, enter a description or select from frequently used ones
+2. **View Entries**: Each sheet shows its own time entries in the table
+3. **Reset Sheet**: Use "Reset Sheet" to clear all entries for the current sheet
+4. **Export Data**: Export current sheet data to organized folders by week
 
 ### Description Dialog
 
@@ -80,13 +106,17 @@ wtk/
 
 ## Data Storage
 
-The application stores all time entries in a `time_entries.json` file in the same directory as the executable. The data is organized by date and includes:
+The application stores all data in a `sheets_config.json` file in the same directory as the executable. The data structure includes:
 
-- Date
-- Start time
-- End time
-- Duration (in human-readable format)
-- Description
+### Per-Sheet Data
+- **Entries**: Time entries organized by date
+- **Frequency**: Description usage frequency for smart suggestions
+- **Session State**: Current tracking status and timing information
+
+### Export Organization
+- **Folder Structure**: `exports/{Sheet_Name}/sheet_W{Week}_{Year}.{format}`
+- **Example**: `exports/Company_A/sheet_W24_2025.txt`
+- **Automatic Creation**: Folders are created automatically when exporting
 
 ## Requirements
 
